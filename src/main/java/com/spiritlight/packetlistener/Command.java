@@ -32,6 +32,42 @@ public class Command extends CommandBase {
             message.send("/packet s/r <name>");
             return;
         }
+        if(args[0].equals("discard")) {
+            if(args.length <= 1) {
+                message.send("invalid operation; try /packet discard s/r <name>");
+                return;
+            }
+            switch(args[1]) {
+                case "s":
+                    if (args.length == 2) {
+                        message.send("Currently discarding packets matching these names:");
+                        for (String s : PacketHandler.discardPacketW) {
+                            message.send("- " + s);
+                        }
+                        break;
+                    }
+                    try {
+                        PacketHandler.discard(args[2], PacketHandler.WRITE);
+                    } catch (IllegalArgumentException e) {
+                        message.send(e.getMessage());
+                    }
+                    break;
+                case "r":
+                    if(args.length == 2) {
+                        message.send("Currently discarding packets matching these names:");
+                        for(String s : PacketHandler.discardPacketR) {
+                            message.send("- " + s);
+                        }
+                        break;
+                    }
+                    try {
+                        PacketHandler.discard(args[2], PacketHandler.READ);
+                    } catch (IllegalArgumentException e) {
+                        message.send(e.getMessage());
+                    }
+                    break;
+            }
+        }
         switch(args[0].toLowerCase(Locale.ROOT)) {
             case "s":
                 if(args.length == 1) {
