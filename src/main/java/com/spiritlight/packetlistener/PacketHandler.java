@@ -115,7 +115,6 @@ public class PacketHandler extends ChannelDuplexHandler {
                     if(discardPacketW.contains(packetName)) {
                         discardPacketW.remove(packetName);
                         message.send("Removed " + packetName + " from remover.");
-
                     } else {
                         discardPacketW.add(packetName);
                         message.send("Added " + packetName + " to remover.");

@@ -67,6 +67,7 @@ public class Command extends CommandBase {
                     }
                     break;
             }
+            return;
         }
         switch(args[0].toLowerCase(Locale.ROOT)) {
             case "s":
